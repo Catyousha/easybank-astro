@@ -1,0 +1,23 @@
+---
+interface Props {
+  author: string;
+  title: string;
+  description: string;
+  imageSrc: string;
+}
+
+const props = Astro.props;
+---
+
+<div class="rounded-lg bg-white overflow-hidden min-h-fit shadow-sm">
+  <img src={props.imageSrc} class="fit-cover lg:h-2/5 xl:h-3/6 w-full" />
+  <div class="flex flex-col gap-2 p-6">
+    <p class="text-[10px] text-manatee">By {props.author}</p>
+    <a href="#" class="text-base font-light hover:text-mountainmeadow">
+      {props.title}
+    </a>
+    <p class="text-[13px] text-manatee">
+      {props.description}
+    </p>
+  </div>
+</div>

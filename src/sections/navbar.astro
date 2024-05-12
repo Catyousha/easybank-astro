@@ -1,0 +1,77 @@
+---
+import Button from "../components/button.astro";
+import NavItemMobile from "../components/nav-item-mobile.astro";
+import NavItem from "../components/nav-item.astro";
+---
+
+<> </>
+<nav class="fixed w-full">
+  <div
+    class="flex flex-row md:justify-around justify-between md:p-0 py-6 px-6 items-center shadow-sm bg-white"
+  >
+    <img src="/images/logo.svg" />
+    <ul class="md:flex flex-row text-sm text-manatee gap-7 hidden">
+      <NavItem label="Home" href="/" />
+      <NavItem label="About" href="/about" />
+      <NavItem label="Contact" href="/contact" />
+      <NavItem label="Blog" href="/blog" />
+      <NavItem label="Careers" href="/careers" />
+    </ul>
+    <img
+      id="navbar__hamburger"
+      class="md:hidden"
+      src="/images/icon-hamburger.svg"
+    />
+    <Button label="Request Invite" className="my-4 hidden md:block" />
+  </div>
+  <div
+    class="relative hidden opacity-0 transition-opacity ease-in-out duration-300"
+    id="navbar__mobile"
+  >
+    <div class="h-screen bg-gradient-to-b from-black to-transparent">
+      <div class="p-6">
+        <ul
+          id="navbar__mobile_list"
+          class="flex flex-col items-center py-8 gap-6 bg-white rounded"
+        >
+          <NavItemMobile label="Home" href="/" />
+          <NavItemMobile label="About" href="/about" />
+          <NavItemMobile label="Contact" href="/contact" />
+          <NavItemMobile label="Blog" href="/blog" />
+          <NavItemMobile label="Careers" href="/careers" />
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbarHbg =
+    document.querySelector<HTMLImageElement>("#navbar__hamburger");
+  function toggleNavbarMobile() {
+    const navbarMobile = document.querySelector("#navbar__mobile");
+    if (navbarMobile?.classList.contains("opacity-0")) {
+      navbarHbg?.setAttribute("src", "/images/icon-close.svg");
+      navbarMobile?.classList.add("opacity-100");
+      navbarMobile?.classList.remove("opacity-0", "hidden");
+    } else {
+      navbarHbg?.setAttribute("src", "/images/icon-hamburger.svg");
+      navbarMobile?.classList.add("opacity-0", "hidden");
+      navbarMobile?.classList.remove("opacity-100");
+    }
+  }
+
+  navbarHbg?.addEventListener("click", () => {
+    toggleNavbarMobile();
+  });
+
+  document.querySelector("#navbar__mobile")?.addEventListener("click", () => {
+    toggleNavbarMobile();
+  });
+
+  document
+    .querySelector("#navbar__mobile_list")
+    ?.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+</script>

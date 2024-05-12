@@ -1,0 +1,12 @@
+---
+interface Props {
+  label: string;
+  className?: string;
+}
+---
+
+<button
+  class=`bg-gradient-to-br from-mountainmeadow to-batteryblue py-3 px-8 rounded-full text-white font-bold text-sm hover:brightness-105 ${Astro.props.className}`
+>
+  {Astro.props.label}
+</button>
